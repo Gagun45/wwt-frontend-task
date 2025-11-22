@@ -6,7 +6,7 @@ const FiltersModalHeader = () => {
 	const { closeModal } = useModalStore()
 	return (
 		<header className="relative flex items-center justify-center">
-			<h2 className="font-medium text-[40px] text-[#31393C]">Filters</h2>
+			<h2 className="font-medium text-[40px] text-center">Filters</h2>
 			<button
 				onClick={closeModal}
 				className="absolute right-0 size-6"

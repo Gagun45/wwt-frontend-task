@@ -1,6 +1,26 @@
 @import 'tailwindcss';
 @import 'tw-animate-css';
 
+@theme inline {
+	--color-custom-green-100: #c7e9cc;
+	--color-custom-yellow-100: #ffeba8;
+	--color-custom-blue-100: #d5e8ff;
+	--color-custom-white: #fff;
+	--color-custom-primary-100: #078691;
+	--color-custom-red-100: #facdd4;
+	--color-custom-buttons-brand-200: #ff5f00;
+	--color-custom-buttons-brand-300: #ff3d00;
+	--color-custom-buttons-brand-50: #ffb17a;
+	--color-custom-buttons-brand-100: #ff9e59;
+	--color-custom-ui-color-primary: #6750a3;
+	--color-custom-black-black: #000;
+	--color-custom-black-grey-500: #31393c;
+	--color-custom-black-grey-400: #474747;
+	--color-custom-black-grey-300: #7e7e7e;
+	--color-custom-black-grey-200: #b4b4b4;
+	--color-custom-black-grey-100: #f4f4f4;
+}
+
 @layer base {
     button {
         @apply cursor-pointer;
