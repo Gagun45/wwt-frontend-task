@@ -3,12 +3,14 @@
 /* eslint-disable i18next/no-literal-string */
 import { useEffect, useRef } from 'react'
 
+import { useFiltersStore } from '@/store/filtersStore'
 import { useModalStore } from '@/store/modalStore'
 
 import FiltersModal from './FiltersModal/FiltersModal'
 
 const Filters = () => {
 	const dialogRef = useRef<HTMLDialogElement>(null)
+	const { selected } = useFiltersStore()
 	const { openModal, isOpen } = useModalStore()
 	useEffect(() => {
 		const dialog = dialogRef.current
@@ -32,6 +34,7 @@ const Filters = () => {
 				Filters
 			</button>
 			<FiltersModal ref={dialogRef} />
+			<div>{JSON.stringify(selected)}</div>
 		</>
 	)
 }
