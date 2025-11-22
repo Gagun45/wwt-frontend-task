@@ -20,12 +20,12 @@
 	--color-custom-black-grey-300: #7e7e7e;
 	--color-custom-black-grey-200: #b4b4b4;
 	--color-custom-black-grey-100: #f4f4f4;
-	--font-inter: "Inter", sans-serif;
+	--font-inter: 'Inter', sans-serif;
 }
 
 @layer base {
 	body {
-		@apply font-inter
+		@apply font-inter;
 	}
 
 	button {
@@ -33,12 +33,12 @@
 	}
 
 	dialog {
-		@apply rounded-[20px]
+		@apply rounded-[20px];
 	}
 }
 
 @layer components {
 	.confirmBtn {
-		@apply w-full rounded-2xl h-16 font-semibold md:w-70
+		@apply w-full rounded-2xl h-16 font-semibold md:w-70;
 	}
 }
