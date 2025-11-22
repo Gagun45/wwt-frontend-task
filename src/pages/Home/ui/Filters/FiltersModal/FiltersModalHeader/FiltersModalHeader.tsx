@@ -11,7 +11,7 @@ const FiltersModalHeader = () => {
 		closeModal()
 	}
 	return (
-		<header className="flex items-center justify-center sticky top-0 bg-white">
+		<header className="flex items-center justify-start relative sm:justify-center">
 			<h2 className="font-medium text-[40px] text-center">Filters</h2>
 			<button
 				onClick={closeAndRevert}
