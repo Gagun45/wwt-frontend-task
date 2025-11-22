@@ -20,19 +20,31 @@ const Filters = () => {
 			optionsIds: optionsIds
 		}))
 		.filter(cat => cat.optionsIds.length > 0)
-	const { openModal, isOpen } = useModalStore()
+	const { openModal, isModalOpen, closeModal } = useModalStore()
 	useEffect(() => {
 		const dialog = dialogRef.current
 		if (!dialog) {
 			return
 		}
 
-		if (isOpen) {
+		const handleClose = () => {
+			// update Zustand store when dialog is closed manually
+			closeModal()
+		}
+
+		dialog.addEventListener('close', handleClose)
+
+		// show/hide based on store
+		if (isModalOpen) {
 			dialog.showModal()
-		} else {
+		} else if (dialog.open) {
 			dialog.close()
 		}
-	}, [isOpen])
+
+		return () => {
+			dialog.removeEventListener('close', handleClose)
+		}
+	}, [isModalOpen, closeModal])
 
 	return (
 		<>

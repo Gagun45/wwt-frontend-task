@@ -6,7 +6,6 @@ import Separator from '../Separator/Separator'
 
 const FilterModalContent = () => {
 	const { tempFilters, toggleTempOption } = useFiltersStore()
-	console.log(tempFilters)
 
 	return (
 		<>

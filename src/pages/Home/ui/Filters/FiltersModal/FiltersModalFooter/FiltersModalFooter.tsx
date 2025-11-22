@@ -1,34 +1,35 @@
 /* eslint-disable no-restricted-syntax */
-import { useFiltersStore } from '@/store/filtersStore'
+import { useEffect, useRef } from 'react'
+
 import { useModalStore } from '@/store/modalStore'
+
+import ConfirmationModal from './ConfirmationModal/ConfirmationModal'
 
 /* eslint-disable i18next/no-literal-string */
 const FiltersModalFooter = () => {
-	const { applyFilters, revertFilters } = useFiltersStore()
-	const { closeModal } = useModalStore()
+	const confirmationRef = useRef<HTMLDialogElement>(null)
+	const { isConfirmationOpen, openConfirmation } = useModalStore()
+	useEffect(() => {
+		const dialog = confirmationRef.current
+		if (!dialog) {
+			return
+		}
+
+		if (isConfirmationOpen) {
+			dialog.showModal()
+		} else {
+			dialog.close()
+		}
+	}, [isConfirmationOpen])
 	return (
-		<footer className="flex justify-center items-center gap-16">
-			{/* <button className="rounded-2xl font-semibold text-white py-[20px] px-[70px] bg-custom-buttons-brand-200">
+		<footer className="flex justify-center items-center gap-16 relative">
+			<button
+				onClick={openConfirmation}
+				className="rounded-2xl font-semibold text-white py-[20px] px-[70px] bg-custom-buttons-brand-200"
+			>
 				Apply
-			</button> */}
-			<button
-				onClick={() => {
-					revertFilters()
-					closeModal()
-				}}
-				className="bg-red-300"
-			>
-				Cancel
 			</button>
-			<button
-				onClick={() => {
-					applyFilters()
-					closeModal()
-				}}
-				className="bg-green-300"
-			>
-				Confirm
-			</button>
+			{isConfirmationOpen && <ConfirmationModal ref={confirmationRef} />}
 		</footer>
 	)
 }

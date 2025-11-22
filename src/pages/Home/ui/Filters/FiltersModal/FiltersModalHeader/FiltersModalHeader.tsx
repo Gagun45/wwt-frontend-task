@@ -1,14 +1,20 @@
 /* eslint-disable no-restricted-syntax */
+import { useFiltersStore } from '@/store/filtersStore'
 import { useModalStore } from '@/store/modalStore'
 
 /* eslint-disable i18next/no-literal-string */
 const FiltersModalHeader = () => {
 	const { closeModal } = useModalStore()
+	const { revertFilters } = useFiltersStore()
+	const closeAndRevert = () => {
+		revertFilters()
+		closeModal()
+	}
 	return (
-		<header className="relative flex items-center justify-center">
+		<header className="sticky top-0 flex items-center justify-center">
 			<h2 className="font-medium text-[40px] text-center">Filters</h2>
 			<button
-				onClick={closeModal}
+				onClick={closeAndRevert}
 				className="absolute right-0 size-6"
 				aria-label="Close modal"
 			>

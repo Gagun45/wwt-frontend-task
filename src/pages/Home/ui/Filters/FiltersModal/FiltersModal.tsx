@@ -13,7 +13,7 @@ const FiltersModal = ({ ref }: Props) => {
 	return (
 		<dialog
 			ref={ref}
-			className="size-full max-w-[1280px] mx-auto mt-20 py-10 px-8 text-custom-black-grey-500"
+			className="size-full relative max-w-[1280px] mx-auto mt-20 py-10 px-8 text-custom-black-grey-500"
 		>
 			<FiltersModalHeader />
 			<Separator />
