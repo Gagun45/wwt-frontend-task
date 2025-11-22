@@ -22,7 +22,7 @@ const FiltersModalFooter = () => {
 		}
 	}, [isConfirmationOpen])
 	return (
-		<footer className="flex justify-center items-center gap-16 relative">
+		<footer className="flex justify-center items-center gap-16">
 			<button
 				onClick={openConfirmation}
 				className="rounded-2xl font-semibold text-white py-[20px] px-[70px] bg-custom-buttons-brand-200"

@@ -9,7 +9,7 @@ const ConfirmationModal = ({ ref }: Props) => {
 	return (
 		<dialog
 			ref={ref}
-			className="bg-red-500 w-full"
+			className="bg-red-500 mx-auto mt-70 w-full"
 		>
 			Confirmation
 		</dialog>

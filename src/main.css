@@ -22,7 +22,11 @@
 }
 
 @layer base {
-    button {
-        @apply cursor-pointer;
-    }
+	button {
+		@apply cursor-pointer;
+	}
+
+	dialog {
+		@apply rounded-[20px]
+	}
 }
