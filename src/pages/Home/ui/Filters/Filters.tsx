@@ -13,28 +13,17 @@ import FiltersModal from './FiltersModal/FiltersModal'
 const Filters = () => {
 	const dialogRef = useRef<HTMLDialogElement>(null)
 	const { appliedFilters } = useFiltersStore()
-	const filtersJSON: SearchRequestFilter = Object.entries(appliedFilters)
-		.map(([filterId, { optionsIds }]) => ({
-			id: filterId,
-			type: 'OPTION' as FilterType,
-			optionsIds: optionsIds
-		}))
-		.filter(cat => cat.optionsIds.length > 0)
 	const { openModal, isModalOpen, closeModal } = useModalStore()
+
+	// useeffect to syncronize filter modal close/open state with zustand store state
 	useEffect(() => {
 		const dialog = dialogRef.current
 		if (!dialog) {
 			return
 		}
 
-		const handleClose = () => {
-			// update Zustand store when dialog is closed manually
-			closeModal()
-		}
+		dialog.addEventListener('close', () => closeModal())
 
-		dialog.addEventListener('close', handleClose)
-
-		// show/hide based on store
 		if (isModalOpen) {
 			dialog.showModal()
 		} else if (dialog.open) {
@@ -42,9 +31,18 @@ const Filters = () => {
 		}
 
 		return () => {
-			dialog.removeEventListener('close', handleClose)
+			dialog.removeEventListener('close', () => closeModal())
 		}
 	}, [isModalOpen, closeModal])
+
+	// converting applied filters to searchrequestfilter type
+	const filtersJSON: SearchRequestFilter = Object.entries(appliedFilters)
+		.map(([filterId, { optionsIds }]) => ({
+			id: filterId,
+			type: 'OPTION' as FilterType,
+			optionsIds
+		}))
+		.filter(cat => cat.optionsIds.length > 0)
 
 	return (
 		<>

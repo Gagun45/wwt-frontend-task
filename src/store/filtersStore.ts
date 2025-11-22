@@ -50,5 +50,5 @@ export const useFiltersStore = create<FiltersState>((set, get) => ({
 		const { appliedFilters } = get()
 		set({ tempFilters: [...appliedFilters] })
 	},
-	resetFilters: () => set({ appliedFilters: [], tempFilters: [] })
+	resetFilters: () => set({ tempFilters: [] })
 }))

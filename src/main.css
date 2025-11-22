@@ -1,5 +1,6 @@
 @import 'tailwindcss';
 @import 'tw-animate-css';
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
 @theme inline {
 	--color-custom-green-100: #c7e9cc;
@@ -19,14 +20,25 @@
 	--color-custom-black-grey-300: #7e7e7e;
 	--color-custom-black-grey-200: #b4b4b4;
 	--color-custom-black-grey-100: #f4f4f4;
+	--font-inter: "Inter", sans-serif;
 }
 
 @layer base {
+	body {
+		@apply font-inter
+	}
+
 	button {
 		@apply cursor-pointer;
 	}
 
 	dialog {
 		@apply rounded-[20px]
+	}
+}
+
+@layer components {
+	.confirmBtn {
+		@apply w-full rounded-2xl h-16 font-semibold md:w-70
 	}
 }

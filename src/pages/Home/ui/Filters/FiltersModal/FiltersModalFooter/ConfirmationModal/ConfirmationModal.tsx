@@ -3,6 +3,7 @@
 /* eslint-disable i18next/no-literal-string */
 import { type RefObject } from 'react'
 
+import { useFiltersStore } from '@/store/filtersStore'
 import { useModalStore } from '@/store/modalStore'
 
 interface Props {
@@ -10,22 +11,33 @@ interface Props {
 }
 
 const ConfirmationModal = ({ ref }: Props) => {
-	const { closeConfirmation } = useModalStore()
+	const { closeConfirmation, closeModal } = useModalStore()
+	const { applyFilters, revertFilters } = useFiltersStore()
+	const confirmChanges = () => {
+		applyFilters()
+		closeConfirmation()
+		closeModal()
+	}
+	const cancelChanges = () => {
+		revertFilters()
+		closeConfirmation()
+		closeModal()
+	}
 	return (
 		<dialog
 			ref={ref}
-			className="text-custom-black-grey-500 w-[calc(100vw-160px)] max-w-320 mx-auto mt-70"
+			className="text-custom-black-grey-500 w-[calc(100vw-160px)] max-w-320 mx-auto mt-[5%]"
 		>
 			<div className="backdrop-blur-[3px] inset-0 fixed h-screen w-screen bg-[rgba(27,27,27,0.3)] -z-10" />
-			<div className="h-full px-8 py-10 bg-white">
-				<div className="flex items-center justify-center sticky top-0 bg-white">
-					<h2 className="font-medium text-[40px] text-center">
+			<div className="p-8 bg-white flex flex-col gap-8 lg:gap-30 items-center">
+				<div className="flex justify-center items-center overflow-auto z-10 relative w-full px-8">
+					<h2 className="font-medium text-xl lg:text-[40px] text-center">
 						Do you want to apply new filter?
 					</h2>
 					<button
 						onClick={closeConfirmation}
 						className="absolute right-0 size-6"
-						aria-label="Close modal"
+						aria-label="Close confirmation modal"
 					>
 						<svg
 							width="24"
@@ -41,9 +53,19 @@ const ConfirmationModal = ({ ref }: Props) => {
 						</svg>
 					</button>
 				</div>
-				<div>
-					<button>Use old filter</button>
-					<button>Apply new filter</button>
+				<div className="flex flex-col gap-8 items-center w-full justify-center md:flex-row">
+					<button
+						onClick={cancelChanges}
+						className="confirmBtn border-2 border-custom-black-grey-200"
+					>
+						Use old filter
+					</button>
+					<button
+						onClick={confirmChanges}
+						className="confirmBtn bg-custom-buttons-brand-200 text-white"
+					>
+						Apply new filter
+					</button>
 				</div>
 			</div>
 		</dialog>
