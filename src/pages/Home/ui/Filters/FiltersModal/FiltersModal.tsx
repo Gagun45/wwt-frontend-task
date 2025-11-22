@@ -1,5 +1,5 @@
+/* eslint-disable i18next/no-literal-string */
 import type { RefObject } from 'react'
-import { useTranslation } from 'react-i18next'
 
 import Separator from './Separator/Separator'
 
@@ -9,14 +9,13 @@ interface Props {
 }
 
 const FiltersModal = ({ closeModal, ref }: Props) => {
-	const { t } = useTranslation()
 	return (
 		<dialog
 			ref={ref}
 			className="size-full max-w-[1280px] mx-auto mt-20 py-10 px-8 text-center"
 		>
 			<header className="relative flex items-center justify-center">
-				<h2 className="font-medium text-[40px] text-[#31393C]">{t('Hello')}</h2>
+				<h2 className="font-medium text-[40px] text-[#31393C]">Filters</h2>
 				<button
 					onClick={closeModal}
 					className="absolute right-0 size-6 cursor-pointer"
