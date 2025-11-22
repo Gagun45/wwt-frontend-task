@@ -1,13 +1,28 @@
+/* eslint-disable no-restricted-syntax */
+
 /* eslint-disable i18next/no-literal-string */
-import { useRef } from 'react'
+import { useEffect, useRef } from 'react'
+
+import { useModalStore } from '@/store/modalStore'
 
 import FiltersModal from './FiltersModal/FiltersModal'
 
 const Filters = () => {
 	const dialogRef = useRef<HTMLDialogElement>(null)
+	const { openModal, isOpen } = useModalStore()
+	useEffect(() => {
+		const dialog = dialogRef.current
+		if (!dialog) {
+			return
+		}
 
-	const openModal = () => dialogRef.current?.showModal()
-	const closeModal = () => dialogRef.current?.close()
+		if (isOpen) {
+			dialog.showModal()
+		} else {
+			dialog.close()
+		}
+	}, [isOpen])
+
 	return (
 		<>
 			<button
@@ -16,11 +31,7 @@ const Filters = () => {
 			>
 				Filters
 			</button>
-
-			<FiltersModal
-				closeModal={closeModal}
-				ref={dialogRef}
-			/>
+			<FiltersModal ref={dialogRef} />
 		</>
 	)
 }
